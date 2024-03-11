@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#333A66">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/mail_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="邮箱"
+            android:fontFamily="@font/st_xingkai"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColorHint="#ffffffff"
+            android:background="@drawable/login_edit"
+
+            android:padding="12dp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintWidth_percent="0.7"
+            app:layout_constraintVertical_bias="0.2736"/>
+
+        <EditText
+            android:id="@+id/vc_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:background="@drawable/login_edit"
+
+            android:padding="12dp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintWidth_percent="0.7"
+            app:layout_constraintVertical_bias="0.7364"/>
+
+        <Button
+            android:id="@+id/get_vc_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="获取验证码"
+            android:textColor="#ff333a66"
+            android:background="#FFFFFF"
+            android:fontFamily="@font/st_xingkai"
+            android:textSize="15sp"
+
+            android:padding="7dp"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintVertical_bias="0.6778"
+            app:layout_constraintHorizontal_bias="0.9355"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
