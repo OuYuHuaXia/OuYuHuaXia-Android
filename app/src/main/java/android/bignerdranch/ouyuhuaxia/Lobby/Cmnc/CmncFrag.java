@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.List;
 
@@ -23,7 +25,11 @@ public class CmncFrag extends BaseFrag {
     private RecyclerView mRecyclerView;
     private PostsAdapter mAdapter;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
     private List<Posts> mList;
+
+    private int i;
 
     @Nullable
     @Override
@@ -33,7 +39,18 @@ public class CmncFrag extends BaseFrag {
         mSearchBtn=(SquareButton) view.findViewById(R.id.search_btn);
 
         mRecyclerView=(RecyclerView) view.findViewById(R.id.cmnc_recyclerview);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
+        mSwipeRefreshLayout=view.findViewById(R.id.refresh);
+        mSwipeRefreshLayout.setEnabled(true);
+        mSwipeRefreshLayout.setRefreshing(false);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reFreshAdapter();
+            }
+        });
 
         setAdapterAbout();
 
@@ -44,5 +61,12 @@ public class CmncFrag extends BaseFrag {
         mList=Posts.getPostsList();
         mAdapter=new PostsAdapter(mList,getActivity());
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void reFreshAdapter(){
+        i=(int)(System.currentTimeMillis()%38);
+        mAdapter.setI(i);
+        mAdapter.notifyDataSetChanged();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

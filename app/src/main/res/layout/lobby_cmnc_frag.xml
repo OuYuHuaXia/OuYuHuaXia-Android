@@ -42,10 +42,18 @@
         
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cmnc_recyclerview"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"/>
+        android:layout_weight="7">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cmnc_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

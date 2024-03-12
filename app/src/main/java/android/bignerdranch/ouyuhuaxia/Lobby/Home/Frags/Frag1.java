@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class Frag1 extends Fragment {
 
     private RecyclerView mRecyclerview;
     private PostsAdapter mAdapter;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private RadioButton FollowViewBtn;
     private RadioButton FindViewBtn;
@@ -35,6 +37,17 @@ public class Frag1 extends Fragment {
 
         mRecyclerview=view.findViewById(R.id.home_choose1_rec);
         mRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
+        mSwipeRefreshLayout=view.findViewById(R.id.refresh);
+        mSwipeRefreshLayout.setEnabled(true);
+        mSwipeRefreshLayout.setRefreshing(false);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reFreshAdapter();
+            }
+        });
 
         FollowViewBtn=view.findViewById(R.id.home_follow);
         FollowViewBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +67,6 @@ public class Frag1 extends Fragment {
 
         setAdapterAbout();
 
-
-
         return view;
     }
 
@@ -66,8 +77,9 @@ public class Frag1 extends Fragment {
     }
 
     public void reFreshAdapter(){
-        i=i=(int)(System.currentTimeMillis()%38);
+        i=(int)(System.currentTimeMillis()%38);
         mAdapter.setI(i);
         mAdapter.notifyDataSetChanged();
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }
